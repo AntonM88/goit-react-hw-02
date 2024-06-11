@@ -1,15 +1,57 @@
-import userData from "data/userData.json";
-import friends from "data/friends.json";
-import transactions from "data/transactions.json";
-import { Profile, FriendList, TransactionHistory } from "components";
+import { useState, useEffect } from "react";
+import { Description, Feedback, Options } from "./components";
+
+const initialState = {
+  good: 0,
+  neutral: 0,
+  bad: 0,
+};
 
 const App = () => {
+  const [feedback, setFeedback] = useState(
+    () => JSON.parse(localStorage.getItem("feedback")) || initialState
+  );
+
+  useEffect(() => {
+    localStorage.setItem("feedback", JSON.stringify(feedback));
+  }, [feedback]);
+
+  const handleClickFeedback = (variant, value) => {
+    setFeedback((prev) => ({
+      ...prev,
+      [variant]: prev[variant] + value,
+    }));
+  };
+
+  const handleReset = () => {
+    setFeedback(initialState);
+  };
+
+  const totalFeedback = Object.values(feedback).reduce(
+    (acc, values) => acc + values,
+    0
+  );
+
+  const resultFeedback = totalFeedback
+    ? Math.round((feedback.good / totalFeedback) * 100)
+    : 0;
+
   return (
-    <>
-      <Profile {...userData} />
-      <FriendList friends={friends} />
-      <TransactionHistory items={transactions} />
-    </>
+    <section>
+      <Description feedback={feedback} />
+      <Options
+        options={Object.keys(feedback)}
+        handleClickFeedback={handleClickFeedback}
+        handleReset={handleReset}
+      />
+
+      <Feedback
+        totalFeedback={totalFeedback}
+        feedback={feedback}
+        resultFeedback={resultFeedback}
+      />
+    </section>
   );
 };
+
 export default App;

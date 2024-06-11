@@ -1,4 +1,4 @@
-export * from "./Profile/Profile";
-export * from "./FriendList/FriendList";
-export * from "./FriendListItem/FriendListItem";
-export * from "./TransactionHistory/TransactionHistory";
+export * from "./Description/Description";
+export * from "./Options/Options";
+export * from "./Feedback/Feedback";
+// export * from './data/'
