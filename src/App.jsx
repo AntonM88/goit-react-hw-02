@@ -46,11 +46,15 @@ const App = () => {
         totalFeedback={totalFeedback}
       />
 
-      <Feedback
-        totalFeedback={totalFeedback}
-        feedback={feedback}
-        resultFeedback={resultFeedback}
-      />
+      {totalFeedback > 0 ? (
+        <Feedback
+          totalFeedback={totalFeedback}
+          feedback={feedback}
+          resultFeedback={resultFeedback}
+        />
+      ) : (
+        <p className="text_stab">No feedback yet</p>
+      )}
     </section>
   );
 };

@@ -44,3 +44,9 @@ section {
   gap: 20px;
   padding-left: 20px;
 }
+.text_stab {
+  font-size: 30px;
+  font-weight: 700;
+  color: #175e59;
+  margin: 0 auto;
+}
