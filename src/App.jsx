@@ -43,6 +43,7 @@ const App = () => {
         options={Object.keys(feedback)}
         handleClickFeedback={handleClickFeedback}
         handleReset={handleReset}
+        totalFeedback={totalFeedback}
       />
 
       <Feedback

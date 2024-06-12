@@ -1,6 +1,11 @@
 import s from "./Options.module.css";
 
-export const Options = ({ options, handleClickFeedback, handleReset }) => {
+export const Options = ({
+  options,
+  handleClickFeedback,
+  handleReset,
+  totalFeedback,
+}) => {
   return (
     <div className={s.wrap}>
       {options.map((item) => (
@@ -12,10 +17,11 @@ export const Options = ({ options, handleClickFeedback, handleReset }) => {
           {item}
         </button>
       ))}
-
-      <button className={s.btn} onClick={handleReset}>
-        reset
-      </button>
+      {totalFeedback ? (
+        <button className={s.btn} onClick={handleReset}>
+          reset
+        </button>
+      ) : null}
     </div>
   );
 };
